@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "minVersion": "0.8.5",
+  "compatibilityLevel": "JAVA_17",
+  "package": "com.mrbysco.ridableblazes.mixin",
+  "refmap": "ridableblazes.refmap.json",
+  "target": "@env(DEFAULT)",
+  "mixins": [
+    "BlazeMixin",
+    "EntityMixin",
+    "LivingEntityMixin"
+  ]
+}
