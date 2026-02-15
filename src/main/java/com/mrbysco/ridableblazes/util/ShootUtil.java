@@ -51,7 +51,8 @@ public class ShootUtil {
 			double d2 = blaze.getRandom().triangle(look.y, inaccuracy);
 			double d3 = blaze.getRandom().triangle(look.z, inaccuracy);
 
-			SmallFireball smallfireball = new SmallFireball(blaze.level(), blaze, d1, d2, d3);
+			Vec3 vec3 = new Vec3(d1, d2, d3);
+			SmallFireball smallfireball = new SmallFireball(blaze.level(), blaze, vec3.normalize());
 			smallfireball.setPos(smallfireball.getX(), blaze.getY(0.5D) + 0.5D, smallfireball.getZ());
 			blaze.level().addFreshEntity(smallfireball);
 		}

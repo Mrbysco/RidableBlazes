@@ -14,7 +14,7 @@ public class RiderUtil {
 			float f1 = Mth.sin(blaze.yBodyRot * ((float) Math.PI / 180F));
 			callback.accept(passenger,
 					blaze.getX() + (double) (0.5F * f1),
-					blaze.getY() + 0.75F + passenger.getMyRidingOffset(),
+					blaze.getY() + 0.75F,
 					blaze.getZ() - (double) (0.5F * f)
 			);
 		}
@@ -24,7 +24,7 @@ public class RiderUtil {
 		blaze.setTarget(null);
 
 		if (BlazeConfig.COMMON.burnWhileRiding.get()) {
-			player.setSecondsOnFire(1);
+			player.setRemainingFireTicks(20);
 		}
 
 		blaze.setYRot(player.getYRot());

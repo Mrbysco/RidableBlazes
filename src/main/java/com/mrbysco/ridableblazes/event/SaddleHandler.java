@@ -5,9 +5,9 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Saddleable;
 import net.minecraft.world.entity.monster.Blaze;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.event.entity.living.LivingDamageEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 
 public class SaddleHandler {
 	@SubscribeEvent
@@ -26,7 +26,7 @@ public class SaddleHandler {
 		}
 	}
 	@SubscribeEvent
-	public void onDamage(LivingDamageEvent event) {
+	public void onDamage(LivingIncomingDamageEvent event) {
 		LivingEntity livingEntity = event.getEntity();
 		if (livingEntity.isPassenger() && event.getSource().getDirectEntity() instanceof Blaze) {
 			event.setCanceled(true);
