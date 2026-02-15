@@ -1,14 +1,19 @@
 package com.mrbysco.ridableblazes.mixin;
 
 import com.mrbysco.ridableblazes.util.RiderUtil;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.Blaze;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.equipment.Equippable;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -16,6 +21,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity {
+	@Shadow
+	public abstract boolean canUseSlot(EquipmentSlot slot);
+
 	public LivingEntityMixin(EntityType<?> entityType, Level level) {
 		super(entityType, level);
 	}
@@ -54,6 +62,21 @@ public abstract class LivingEntityMixin extends Entity {
 		LivingEntity entity = (LivingEntity) (Object) this;
 		if (entity instanceof Blaze blaze) {
 			cir.setReturnValue(RiderUtil.riddenSpeed(blaze, player));
+		}
+	}
+
+	@Inject(
+			at = @At("HEAD"),
+			method = "isEquippableInSlot(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/EquipmentSlot;)Z",
+			cancellable = true
+	)
+	public void ridableblazes$isEquippableInSlot(ItemStack stack, EquipmentSlot slot, CallbackInfoReturnable<Boolean> cir) {
+		LivingEntity entity = (LivingEntity) (Object) this;
+		if (entity instanceof Blaze) {
+			Equippable equippable = stack.get(DataComponents.EQUIPPABLE);
+			cir.setReturnValue(equippable == null
+					? slot == EquipmentSlot.MAINHAND && this.canUseSlot(EquipmentSlot.MAINHAND)
+					: slot == equippable.slot() && this.canUseSlot(equippable.slot()));
 		}
 	}
 }

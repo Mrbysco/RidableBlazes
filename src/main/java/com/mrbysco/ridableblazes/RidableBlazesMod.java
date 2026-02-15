@@ -3,7 +3,6 @@ package com.mrbysco.ridableblazes;
 import com.mojang.logging.LogUtils;
 import com.mrbysco.ridableblazes.config.BlazeConfig;
 import com.mrbysco.ridableblazes.event.SaddleHandler;
-import com.mrbysco.ridableblazes.registry.RidableAttachement;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -22,7 +21,6 @@ public class RidableBlazesMod {
 	public RidableBlazesMod(IEventBus eventBus, Dist dist, ModContainer container) {
 		container.registerConfig(ModConfig.Type.COMMON, BlazeConfig.commonSpec);
 
-		RidableAttachement.register(eventBus);
 		NeoForge.EVENT_BUS.register(new SaddleHandler());
 
 		if (dist.isClient()) {

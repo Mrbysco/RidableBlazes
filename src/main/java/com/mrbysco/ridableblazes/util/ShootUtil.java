@@ -3,7 +3,7 @@ package com.mrbysco.ridableblazes.util;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.monster.Blaze;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.SmallFireball;
+import net.minecraft.world.entity.projectile.hurtingprojectile.SmallFireball;
 import net.minecraft.world.phys.Vec3;
 
 public class ShootUtil {
@@ -17,7 +17,7 @@ public class ShootUtil {
 	private static final float TRIGGER_STRENGTH = 0.9F;
 
 	protected static void tickFireballBurst(Blaze blaze, Player player) {
-		if (blaze.level().isClientSide) {
+		if (blaze.level().isClientSide()) {
 			return;
 		}
 
@@ -40,7 +40,7 @@ public class ShootUtil {
 	}
 
 	private static void shootFireball(Blaze blaze) {
-		if (!blaze.level().isClientSide) {
+		if (!blaze.level().isClientSide()) {
 			if (!blaze.isSilent()) {
 				blaze.level().levelEvent((Player) null, 1018, blaze.blockPosition(), 0);
 			}
@@ -65,9 +65,9 @@ public class ShootUtil {
 
 		static FireballState load(CompoundTag tag) {
 			FireballState state = new FireballState();
-			state.cooldown = tag.getInt(NBT_FIREBALL_COOLDOWN);
-			state.burst = tag.getInt(NBT_FIREBALL_BURST);
-			state.delay = tag.getInt(NBT_FIREBALL_DELAY);
+			state.cooldown = tag.getIntOr(NBT_FIREBALL_COOLDOWN, 0);
+			state.burst = tag.getIntOr(NBT_FIREBALL_BURST, 0);
+			state.delay = tag.getIntOr(NBT_FIREBALL_DELAY, 0);
 			return state;
 		}
 
