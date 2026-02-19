@@ -1,24 +1,24 @@
 modLoader="javafml"
 loaderVersion="[47,)"
-issueTrackerURL="https://github.com/Mrbysco/RidableBlazes/issues"
+issueTrackerURL="https://github.com/Mrbysco/RideableBlazes/issues"
 license="MIT"
 
 [[mods]]
-modId="ridableblazes"
+modId="rideableblazes"
 version="${file.jarVersion}"
-displayName="Ridable Blazes"
-displayURL="https://minecraft.curseforge.com/projects/ridable-blazes"
+displayName="Rideable Blazes"
+displayURL="https://minecraft.curseforge.com/projects/rideable-blazes"
 authors="Mrbysco"
 description='''
 
 '''
-[[dependencies.ridableblazes]]
+[[dependencies.rideableblazes]]
 modId="minecraft"
 mandatory=true
 versionRange="[1.20,1.21)"
 ordering="NONE"
 side="BOTH"
-[[dependencies.ridableblazes]]
+[[dependencies.rideableblazes]]
 modId="forge"
 mandatory=true
 versionRange="[47,)"
