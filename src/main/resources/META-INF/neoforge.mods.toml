@@ -7,21 +7,21 @@ license="MIT"
 modId="ridableblazes"
 version="${file.jarVersion}"
 displayName="Ridable Blazes"
-displayURL="https://minecraft.curseforge.com/projects/ridable-blazes"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/rideable-blazes"
 authors="Mrbysco"
 description='''
-
+Allows you to equip a saddle onto a Blaze and ride it around
 '''
 [[dependencies.ridableblazes]]
 modId="minecraft"
 type="REQUIRED"
-versionRange="[1.21.11,1.22)"
+versionRange="[26.1.1,)"
 ordering="NONE"
 side="BOTH"
 [[dependencies.ridableblazes]]
 modId="neoforge"
 type="REQUIRED"
-versionRange="[21.11.0-beta,)"
+versionRange="[26.1.1.0-alpha,)"
 ordering="NONE"
 side="BOTH"
 [[mixins]]
